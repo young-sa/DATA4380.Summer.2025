@@ -50,42 +50,36 @@ The challenge is to classify whether a Pokémon is Legendary or not based on its
   * No significant training difficulties
 
 ### Performance Comparison
+<img width="485" height="117" alt="Screenshot 2025-08-04 at 11 05 32 AM" src="https://github.com/user-attachments/assets/ffd3e3fc-6942-4bfb-8c43-ca3f949edbcb" />
 
+
+<img width="1033" height="598" alt="Screenshot 2025-08-04 at 11 13 08 AM" src="https://github.com/user-attachments/assets/c5d2673e-1d03-4926-a057-6239692b31cb" />
+
+
+<img width="1012" height="823" alt="Screenshot 2025-08-04 at 11 18 28 AM" src="https://github.com/user-attachments/assets/6771d339-0ac6-47a6-86d1-3964c4a45351" />
+<img width="1016" height="754" alt="Screenshot 2025-08-04 at 11 18 55 AM" src="https://github.com/user-attachments/assets/4d1fb286-0e15-42dd-8e8b-d6129a326b6d" />
+
+
+<img width="1131" height="320" alt="Screenshot 2025-08-04 at 11 20 51 AM" src="https://github.com/user-attachments/assets/e2dcac47-6b97-43ff-b564-c930b908612f" />
 
 
 ### Conclusions
 
-* State any conclusions you can infer from your work. Example: LSTM work better than GRU.
+Random Forest was the best performer, achieving perfect classification. Logistic Regression also achieved perfect accuracy and recall in this dataset, however, not as well as Random Forest. KNN underperformed slightly on recall but was still fairly effective.
 
 ### Future Work
 
-* What would be the next thing that you would try.
-* What are some other studies that can be done starting from here.
-
-## How to reproduce results
-
-* In this section, provide instructions at least one of the following:
-   * Reproduce your results fully, including training.
-   * Apply this package to other data. For example, how to use the model you trained.
-   * Use this package to perform their own study.
-* Also describe what resources to use for this package, if appropirate. For example, point them to Collab and TPUs.
+We can later use cross-validation and hyperparameter tuning (e.g., GridSearchCV), possibly explore ensemble methods, try dimensionality reduction (e.g., PCA). Additionally, we could expand the dataset or define popularity beyond "Is Legendary".
 
 ### Overview of files in repository
 
-* Describe the directory structure, if any.
-* List all relavent files and describe their role in the package.
-* An example:
-  * utils.py: various functions that are used in cleaning and visualizing data.
-  * preprocess.ipynb: Takes input data in CSV and writes out data frame after cleanup.
-  * visualization.ipynb: Creates various visualizations of the data.
-  * models.py: Contains functions that build the various models.
-  * training-model-1.ipynb: Trains the first model and saves model during training.
-  * training-model-2.ipynb: Trains the second model and saves model during training.
-  * training-model-3.ipynb: Trains the third model and saves model during training.
-  * performance.ipynb: loads multiple trained models and compares results.
-  * inference.ipynb: loads a trained model and applies it to test data to create kaggle submission.
-
-* Note that all of these notebooks should contain enough text for someone to understand what is happening.
+* Datasets from zip file:
+  * Hoenn.csv
+  * Johto.csv
+  * Kanto.csv
+* utils.py: various functions that are used in cleaning and visualizing data.
+* YoungTabularFeasability.ipynb: cleans the dataset to prepare for machine learning.
+* YoungTabularPrototype.ipynb: loads multiple trained models and compares results.
 
 ### Software Setup
 * List all of the required packages.
