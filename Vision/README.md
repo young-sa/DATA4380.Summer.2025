@@ -1,69 +1,75 @@
-![](UTA-DataScience-Logo.png)
 
-# Project Title
 
-* **One Sentence Summary** Ex: This repository holds an attempt to apply LSTMs to Stock Market using data from
-"Get Rich" Kaggle challenge (provide link). 
+# Weather Image Classification with Transfer Learning
+
+* **One Sentence Summary** This repository presents a deep learning project using transfer learning models (MobileNetV2, ResNet50, DenseNet121) to classify weather conditions (Cloudy, Rain, Shine, Sunrise) from image data. [(provide link)](https://www.kaggle.com/datasets/pratik2901/multiclass-weather-dataset). 
 
 ## Overview
 
-* This section could contain a short paragraph which include the following:
-  * **Definition of the tasks / challenge**  Ex: The task, as defined by the Kaggle challenge is to use a time series of 12 features, sampled daily for 1 month, to predict the next day's price of a stock.
-  * **Your approach** Ex: The approach in this repository formulates the problem as regression task, using deep recurrent neural networks as the model with the full time series of features as input. We compared the performance of 3 different network architectures.
-  * **Summary of the performance achieved** Ex: Our best model was able to predict the next day stock price within 23%, 90% of the time. At the time of writing, the best performance on Kaggle of this metric is 18%.
+The task is to classify weather conditions from static images into one of four categories: Cloudy, Rain, Shine, or Sunrise. This is a computer vision classification problem. We use transfer learning with pre-trained convolutional neural networks (CNNs) from Keras Applications. Our approach includes data augmentation, baseline training, and evaluation via ROC curves and classification reports. Among the three models, DenseNet121 showed the most consistent and high performance across all classes.
 
 ## Summary of Workdone
 
-Include only the sections that are relevant an appropriate.
+* Organized and preprocessed a weather image dataset.
+* Built a baseline CNN model.
+* Applied data augmentation and evaluated its impact.
+* Trained three transfer learning models: MobileNetV2, ResNet50, DenseNet121.
+* Evaluated model performance using ROC curves and classification reports
 
 ### Data
 
-* Data:
-  * Type: For example
-    * Input: medical images (1000x1000 pixel jpegs), CSV file: image filename -> diagnosis
-    * Input: CSV file of features, output: signal/background flag in 1st column.
-  * Size: How much data?
-  * Instances (Train, Test, Validation Split): how many data points? Ex: 1000 patients for training, 200 for testing, none for validation
-
+* Type: JPEG/PNG weather images
+* Input: Images labeled as Cloudy, Rain, Shine, Sunrise
+* Size: Approximately ~1,200 images total
+* Instances: 80% training, 20% validation split
+  
 #### Preprocessing / Clean up
 
-* Describe any manipulations you performed to the data.
+* Images resized to 180x180.
+* Grayscale images converted to RGB.
+* Applied rescaling, normalization, and data augmentation (rotation, zoom, flip).
 
 #### Data Visualization
 
-Show a few visualization of the data and say a few words about what you see.
+Sample images from each class were visualized.
+* Rain images showed more motion blur or droplets.
+* Shine/Sunrise had intense lighting conditions.
+* Classes were reasonably balanced.
 
 ### Problem Formulation
 
-* Define:
-  * Input / Output
+* Input: RGB images of shape (180, 180, 3)
+* Output: One of four weather labels (multi-class classification)
   * Models
-    * Describe the different models you tried and why.
-  * Loss, Optimizer, other Hyperparameters.
+    * MobileNetV2: Lightweight, fast, good performance.
+    * ResNet50: Deeper network, but performance was inconsistent.
+    * DenseNet121: Best performance across all classes.
+  *Hyperparameters
+    * Loss: Categorical Crossentropy
+    * Optimizer: Adam
+    * Learning rate: 0.0001
+    * Batch size: 32
+    * Epochs: 10 (early stopping based on validation loss)
 
 ### Training
 
-* Describe the training:
-  * How you trained: software and hardware.
-  * How did training take.
-  * Training curves (loss vs epoch for test/train).
-  * How did you decide to stop training.
-  * Any difficulties? How did you resolve them?
+* Software: Python, TensorFlow, Keras, scikit-learn
+* Hardware: MacBook Pro (M1 chip), Google Colab (TPU/GPU optional)
+* Training took 5–15 minutes depending on the model.
+* Models saved using model.save()
+* Training stopped early when validation loss plateaued.
 
 ### Performance Comparison
 
-* Clearly define the key performance metric(s).
-* Show/compare results in one table.
-* Show one (or few) visualization(s) of results, for example ROC curves.
+
 
 ### Conclusions
 
-* State any conclusions you can infer from your work. Example: LSTM work better than GRU.
+DenseNet121 outperformed the other two models in both ROC and classification accuracy. MobileNetV2 was a close second, making it ideal for lightweight applications. ResNet50 struggled especially on "Rain" and "Shine" classes.
 
 ### Future Work
 
-* What would be the next thing that you would try.
-* What are some other studies that can be done starting from here.
+We could expand the dataset to include more images, try other architectures like InceptionV3 or ConvNeXt, deploy model to a real-time weather monitoring application, and possibly fine-tune model weights instead of freezing base layers.
 
 ## How to reproduce results
 
@@ -75,43 +81,30 @@ Show a few visualization of the data and say a few words about what you see.
 
 ### Overview of files in repository
 
-* Describe the directory structure, if any.
-* List all relavent files and describe their role in the package.
-* An example:
-  * utils.py: various functions that are used in cleaning and visualizing data.
-  * preprocess.ipynb: Takes input data in CSV and writes out data frame after cleanup.
-  * visualization.ipynb: Creates various visualizations of the data.
-  * models.py: Contains functions that build the various models.
-  * training-model-1.ipynb: Trains the first model and saves model during training.
-  * training-model-2.ipynb: Trains the second model and saves model during training.
-  * training-model-3.ipynb: Trains the third model and saves model during training.
-  * performance.ipynb: loads multiple trained models and compares results.
-  * inference.ipynb: loads a trained model and applies it to test data to create kaggle submission.
-
-* Note that all of these notebooks should contain enough text for someone to understand what is happening.
+* TrainBaseModel.ipynb: Trains a basic CNN model.
+* TrainBaseModelAugmentation.ipynb: Adds augmentation to the baseline.
+* Train-MobileNetV2.ipynb: Implements MobileNetV2 training.
+* Train-ResNet50.ipynb: Implements ResNet50 training.
+* Train-DenseNet121.ipynb: Implements DenseNet121 training.
+* CompareModels.ipynb: Loads and compares ROC curves of the 3 models.
 
 ### Software Setup
-* List all of the required packages.
-* If not standard, provide or point to instruction for installing the packages.
-* Describe how to install your package.
-
-### Data
-
-* Point to where they can download the data.
-* Lead them through preprocessing steps, if necessary.
-
-### Training
-
-* Describe how to train the model
+* TensorFlow
+* Keras
+* NumPy
+* Matplotlib
+* scikit-learn
 
 #### Performance Evaluation
 
-* Describe how to run the performance evaluation.
+* Run CompareModels.ipynb to load all saved models and generate ROC curves for validation set.
 
 
 ## Citations
 
-* Provide any references.
+* Keras Applications: https://keras.io/examples/vision/image_classification_from_scratch/
+* Weather Dataset: https://www.kaggle.com/datasets/pratik2901/multiclass-weather-dataset
+* Chatgpt did help with solving errors that occured.
 
 
 
