@@ -6,53 +6,52 @@
 
 ## Overview
 
-* The challenge is to classify whether a Pokémon is Legendary or not based on its base stats (HP, Attack, Defense, Speed, etc.), typing, generation, and other features.
-* We frame this as a binary supervised classification task. Several ML models were tested, with the primary focus on Random Forest and K-Nearest Neighbors (KNN). Data preprocessing included handling categorical features, scaling numerical ones, and addressing class imbalance.
-  * **Summary of the performance achieved** Ex: Our best model was able to predict the next day stock price within 23%, 90% of the time. At the time of writing, the best performance on Kaggle of this metric is 18%.
+The challenge is to classify whether a Pokémon is Legendary or not based on its base stats (HP, Attack, Defense, Speed, etc.), typing, generation, and other features. Our approach involves formulating the problem as a binary classification task and applying models such as Logistic Regression, K-Nearest Neighbors, and Random Forest. After preprocessing and cleaning the data, we split it into training, validation, and test sets to train and evaluate each model. Our best model (Random Forest) achieved perfect accuracy on the test set, with Logistic Regression and KNN also showing strong performance.
 
 ## Summary of Workdone
 
-Include only the sections that are relevant an appropriate.
+* Data
+  * Type: CSV file with Pokemon features and labels
+  * Input: CSV file with numerical and categorical features (e.g., Total stats, Speed, Type, Capture Rate)
+  * Output: Binary target (Is Legendary)
+  * Size: ~800 data points
+  * Split: 70% Training, 15% Validation, 15% Test
+ 
+* Preprocessing / Clean up
+  * Removed unnecessary columns (names, IDs, duplicated columns)
+  * Handled missing values (none in our dataset)
+  * One-hot encoded categorical variables (Types)
+  * Scaled numerical features using StandardScaler
 
-### Data
+* Data Visualization
+  * Histograms comparing feature distributions between legendary and non-legendary classes
+  * Boxplots and violin plots for top numerical features
+  * Feature correlation heatmap
+  * Feature importance plot for Random Forest
 
-* Data:
-  * Type: For example
-    * Input: medical images (1000x1000 pixel jpegs), CSV file: image filename -> diagnosis
-    * Input: CSV file of features, output: signal/background flag in 1st column.
-  * Size: How much data?
-  * Instances (Train, Test, Validation Split): how many data points? Ex: 1000 patients for training, 200 for testing, none for validation
+* Problem Formulation
+  * Input: Pokemon features (numerical stats and types)
+  * Output: Binary classification (0 = Not Legendary, 1 = Legendary)
 
-#### Preprocessing / Clean up
+* Models Used
+  * Logistic Regression
+  * K-Nearest Neighbors (k=5)
+  * Random Forest Classifier
 
-* Describe any manipulations you performed to the data.
+* Hyperparameters
+  * KNN: k=5
+  * Random Forest: n_estimators=100, class_weight='balanced'
+  * Logistic Regression: max_iter=1000
 
-#### Data Visualization
-
-Show a few visualization of the data and say a few words about what you see.
-
-### Problem Formulation
-
-* Define:
-  * Input / Output
-  * Models
-    * Describe the different models you tried and why.
-  * Loss, Optimizer, other Hyperparameters.
-
-### Training
-
-* Describe the training:
-  * How you trained: software and hardware.
-  * How did training take.
-  * Training curves (loss vs epoch for test/train).
-  * How did you decide to stop training.
-  * Any difficulties? How did you resolve them?
+* Training
+  * Environment: Python, Scikit-learn, Jupyter Notebooks
+  * Training time: Less than a minute per model
+  * Stopping criteria: Early validation performance and overfitting risk
+  * No significant training difficulties
 
 ### Performance Comparison
 
-* Clearly define the key performance metric(s).
-* Show/compare results in one table.
-* Show one (or few) visualization(s) of results, for example ROC curves.
+
 
 ### Conclusions
 
