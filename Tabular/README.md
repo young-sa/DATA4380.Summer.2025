@@ -81,28 +81,10 @@ We can later use cross-validation and hyperparameter tuning (e.g., GridSearchCV)
 * YoungTabularFeasability.ipynb: cleans the dataset to prepare for machine learning.
 * YoungTabularPrototype.ipynb: loads multiple trained models and compares results.
 
-### Software Setup
-* List all of the required packages.
-* If not standard, provide or point to instruction for installing the packages.
-* Describe how to install your package.
-
-### Data
-
-* Point to where they can download the data.
-* Lead them through preprocessing steps, if necessary.
-
-### Training
-
-* Describe how to train the model
-
-#### Performance Evaluation
-
-* Describe how to run the performance evaluation.
-
-
 ## Citations
 
-* Provide any references.
+* https://www.kaggle.com/datasets/shreyasdasari7/golden-pokdex-kanto-to-hoenn
+* Chatgpt assisted in solving errors that occured.
 
 
 
